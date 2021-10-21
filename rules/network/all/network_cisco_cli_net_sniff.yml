@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Show when a monitor or a span/rspan is setup or modified
+filter:
+- query:
+    query_string:
+      query: \*.keyword:(*monitor\ capture\ point* OR *set\ span* OR *set\ rspan*)
+index: filebeat-10*
+name: b9e1f193-d236-4451-aaae-2f3d2102120d-Cisco-Sniffing
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: Network-All.config

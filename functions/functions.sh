@@ -13,7 +13,7 @@ function aws_all () {
     RULE_PATH=${UPDATE_RULES}/aws/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -23,7 +23,7 @@ function aws_critical () {
     RULE_PATH=${UPDATE_RULES}/aws/critical
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -33,7 +33,7 @@ function aws_high () {
     RULE_PATH=${UPDATE_RULES}/AWS/high
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 
 }
@@ -44,7 +44,7 @@ function aws_medium () {
     RULE_PATH=${UPDATE_RULES}/AWS/medium
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -54,7 +54,7 @@ function aws_low () {
     RULE_PATH=${UPDATE_RULES}/aws/low
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -65,7 +65,7 @@ function o365_all () {
     RULE_PATH=${UPDATE_RULES}/o365/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -75,7 +75,7 @@ function o365_critical () {
     RULE_PATH=${UPDATE_RULES}/o365/critical
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -85,7 +85,7 @@ function o365_high () {
     RULE_PATH=${UPDATE_RULES}/o365/high
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -95,7 +95,7 @@ function o365_medium () {
     RULE_PATH=${UPDATE_RULES}/o365/medium
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -105,7 +105,7 @@ function o365_low () {
     RULE_PATH=${UPDATE_RULES}/o365/low
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -116,7 +116,7 @@ function linux_all () {
     RULE_PATH=${UPDATE_RULES}/linux/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -126,7 +126,7 @@ function linux_critical () {
     RULE_PATH=${UPDATE_RULES}/linux/critical
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -136,7 +136,7 @@ function linux_high () {
     RULE_PATH=${UPDATE_RULES}/linux/high
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -146,7 +146,7 @@ function linux_medium () {
     RULE_PATH=${UPDATE_RULES}/linux/medium
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -156,7 +156,7 @@ function linux_low () {
     RULE_PATH=${UPDATE_RULES}/linux/low
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -167,7 +167,7 @@ function windows_all () {
     RULE_PATH=${UPDATE_RULES}/linux/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -177,7 +177,7 @@ function windows_critical () {
     RULE_PATH=${UPDATE_RULES}/windows/critical
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -187,7 +187,7 @@ function windows_high () {
     RULE_PATH=${UPDATE_RULES}/windows/high
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -197,7 +197,7 @@ function windows_medium () {
     RULE_PATH=${UPDATE_RULES}/windows/medium
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -207,7 +207,7 @@ function windows_low () {
     RULE_PATH=${UPDATE_RULES}/windows/low
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -218,7 +218,7 @@ function network_all () {
     RULE_PATH=${UPDATE_RULES}/network/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }
 
@@ -229,6 +229,6 @@ function proxy_all () {
     RULE_PATH=${UPDATE_RULES}/proxy/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".conf" >> $file
+        echo "import: "${RULE}".config" >> $file
       done
 }

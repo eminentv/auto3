@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects Obfuscated Powershell via use Clip.exe in Scripts
+filter:
+- query:
+    query_string:
+      query: winlog.event_data.Payload.keyword:/(?i).*?echo.*clip.*&&.*(Clipboard|i`?n`?v`?o`?k`?e`?).*/
+index: winlogbeat-*
+name: ebdf49d8-b89c-46c9-8fdf-2c308406f6bd-Invoke-Obfuscation-Via-Use-Clip
+priority: 2
+realert:
+  minutes: 0
+type: any
+

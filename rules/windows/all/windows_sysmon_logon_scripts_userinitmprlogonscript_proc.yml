@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects creation or execution of UserInitMprLogonScript persistence method
+filter:
+- query:
+    query_string:
+      query: (((process.parent.executable.keyword:*\\userinit.exe AND (NOT (process.executable.keyword:*\\explorer.exe))) AND (NOT (process.command_line.keyword:(*netlogon.bat* OR *UsrLogon.cmd*)))) OR process.command_line.keyword:*UserInitMprLogonScript*)
+index: winlogbeat-*
+name: 0a98a10c-685d-4ab0-bddc-b6bdd1d48458-Logon-Scripts-UserInitMprLogonScript
+priority: 2
+realert:
+  minutes: 0
+type: any
+

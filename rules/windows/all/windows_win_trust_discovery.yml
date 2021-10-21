@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Identifies execution of nltest.exe and dsquery.exe for domain trust discovery. This technique is used by attackers to enumerate Active Directory trusts.
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\nltest.exe AND process.command_line.keyword:(*domain_trusts* OR *all_trusts* OR *\/trusted_domains* OR *\/dclist*)) OR (process.executable.keyword:*\\dsquery.exe AND process.command_line.keyword:*trustedDomain*) OR (process.executable.keyword:*\\dsquery.exe AND process.command_line.keyword:*\-filter* AND process.command_line.keyword:*trustedDomain*))
+index: winlogbeat-*
+name: 3bad990e-4848-4a78-9530-b427d854aac0-Domain-Trust-Discovery
+priority: 3
+realert:
+  minutes: 0
+type: any
+

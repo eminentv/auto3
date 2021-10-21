@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Use living off the land tools to zip a file and stage it in the Windows temporary folder for later exfiltration
+filter:
+- query:
+    query_string:
+      query: (winlog.event_data.ContextInfo.keyword:*Compress\-Archive\ * AND winlog.event_data.ContextInfo.keyword:*\ \-Path\ * AND winlog.event_data.ContextInfo.keyword:*\ \-DestinationPath\ * AND winlog.event_data.ContextInfo.keyword:*$env\:TEMP\\*)
+index: winlogbeat-*
+name: daf7eb81-35fd-410d-9d7a-657837e602bb-Zip-A-Folder-With-PowerShell-For-Staging-In-Temp
+priority: 3
+realert:
+  minutes: 0
+type: any
+

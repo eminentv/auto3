@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects possible suspicious glue development endpoint activity.
+filter:
+- query:
+    query_string:
+      query: (event.provider:"glue.amazonaws.com" AND (event.action:"CreateDevEndpoint" OR event.action:"DeleteDevEndpoint" OR event.action:"UpdateDevEndpoint"))
+index: filebeat-7.11*
+name: 4990c2e3-f4b8-45e3-bc3c-30b14ff0ed26-AWS-Glue-Development-Endpoint-Activity
+priority: 4
+realert:
+  minutes: 0
+type: any
+
+import: AWS-All.config

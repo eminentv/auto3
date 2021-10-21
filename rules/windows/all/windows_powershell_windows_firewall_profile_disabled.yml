@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects when a user disables the Windows Firewall via a Profile to help evade defense.
+filter:
+- query:
+    query_string:
+      query: (powershell.file.script_block_text.keyword:*Set\-NetFirewallProfile* AND powershell.file.script_block_text.keyword:*\-Profile* AND powershell.file.script_block_text.keyword:*\-Enabled* AND powershell.file.script_block_text.keyword:*False*)
+index: winlogbeat-*
+name: 488b44e7-3781-4a71-888d-c95abfacf44d-Windows-Firewall-Profile-Disabled
+priority: 2
+realert:
+  minutes: 0
+type: any
+

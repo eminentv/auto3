@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects a change in profile.ps1 of the Powershell profile
+filter:
+- query:
+    query_string:
+      query: (file.path.keyword:*\\profile.ps1* AND (file.path.keyword:*\\My\ Documents\\PowerShell\\* OR file.path.keyword:*C\:\\Windows\\System32\\WindowsPowerShell\\v1.0\\*))
+index: winlogbeat-*
+name: b5b78988-486d-4a80-b991-930eff3ff8bf-Powershell-Profile.ps1-Modification
+priority: 2
+realert:
+  minutes: 0
+type: any
+
