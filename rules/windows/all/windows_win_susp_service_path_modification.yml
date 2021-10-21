@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects service path modification to PowerShell or cmd.
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\sc.exe AND process.command_line.keyword:*config* AND process.command_line.keyword:*binpath* AND process.command_line.keyword:(*powershell* OR *cmd*))
+index: winlogbeat-*
+name: 138d3531-8793-4f50-a2cd-f291b2863d78-Suspicious-Service-Path-Modification
+priority: 2
+realert:
+  minutes: 0
+type: any
+

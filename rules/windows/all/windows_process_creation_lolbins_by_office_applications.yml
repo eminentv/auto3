@@ -1,0 +1,14 @@
+alert:
+- debug
+description: This rule will monitor any office apps that spins up a new LOLBin process. This activity is pretty suspicious and should be investigated.
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:(*regsvr32 OR *rundll32 OR *msiexec OR *mshta OR *verclsid) AND process.parent.executable.keyword:(*winword.exe OR *excel.exe OR *powerpnt.exe))
+index: winlogbeat-*
+name: 23daeb52-e6eb-493c-8607-c4f0246cb7d8-New-Lolbin-Process-by-Office-Applications
+priority: 2
+realert:
+  minutes: 0
+type: any
+

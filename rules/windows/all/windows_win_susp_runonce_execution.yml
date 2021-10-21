@@ -1,0 +1,14 @@
+alert:
+- debug
+description: This rule detects the execution of Run Once task as configured in the registry
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\runonce.exe OR process.pe.description:"Run\ Once\ Wrapper") AND process.command_line.keyword:*\ \/AlternateShellStartup*)
+index: winlogbeat-*
+name: 198effb6-6c98-4d0c-9ea3-451fa143c45c-Run-Once-Task-Execution-as-Configured-in-Registry
+priority: 4
+realert:
+  minutes: 0
+type: any
+

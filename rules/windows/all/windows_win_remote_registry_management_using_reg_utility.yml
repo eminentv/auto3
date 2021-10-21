@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Remote registry management using REG utility from non-admin workstation
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND (event.code:"5145" AND winlog.event_data.RelativeTargetName.keyword:*\\winreg*) AND (NOT (source.ip:"%Admins_Workstations%")))
+index: winlogbeat-*
+name: 68fcba0d-73a5-475e-a915-e8b4c576827e-Remote-Registry-Management-Using-Reg-Utility
+priority: 3
+realert:
+  minutes: 0
+type: any
+

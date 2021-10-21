@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects MMC20.Application Lateral Movement; specifically looks for the spawning of the parent MMC.exe with a command line of "-Embedding" as a child of svchost.exe
+filter:
+- query:
+    query_string:
+      query: (process.parent.executable.keyword:*\\svchost.exe AND process.executable.keyword:*\\mmc.exe AND process.command_line.keyword:*\-Embedding*)
+index: winlogbeat-*
+name: f1f3bf22-deb2-418d-8cce-e1a45e46a5bd-MMC20-Lateral-Movement
+priority: 2
+realert:
+  minutes: 0
+type: any
+

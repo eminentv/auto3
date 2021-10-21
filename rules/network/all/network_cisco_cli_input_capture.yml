@@ -1,0 +1,15 @@
+alert:
+- debug
+description: See what commands are being input into the device by other people, full credentials can be in the history
+filter:
+- query:
+    query_string:
+      query: \*.keyword:(*show\ history* OR *show\ history\ all* OR *show\ logging*)
+index: filebeat-10*
+name: b094d9fb-b1ad-4650-9f1a-fb7be9f1d34b-Cisco-Show-Commands-Input
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: Network-All.conf

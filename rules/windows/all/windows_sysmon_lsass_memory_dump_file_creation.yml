@@ -1,0 +1,14 @@
+alert:
+- debug
+description: LSASS memory dump creation using operating systems utilities. Procdump will use process name in output file if no name is specified
+filter:
+- query:
+    query_string:
+      query: (file.path.keyword:*lsass* AND file.path.keyword:*dmp)
+index: winlogbeat-*
+name: 5e3d3601-0662-4af0-b1d2-36a05e90c40a-LSASS-Memory-Dump-File-Creation
+priority: 2
+realert:
+  minutes: 0
+type: any
+

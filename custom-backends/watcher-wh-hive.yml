@@ -1,0 +1,3 @@
+alert_methods: webhook
+http_uri_path:
+http_method: post

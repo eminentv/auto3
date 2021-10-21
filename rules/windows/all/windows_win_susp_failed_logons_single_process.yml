@@ -1,0 +1,21 @@
+alert:
+- debug
+buffer_time:
+  hours: 24
+description: Detects failed logins with multiple accounts from a single process on the system.
+doc_type: doc
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND (event.code:"4625" AND winlog.event_data.LogonType:"2") AND (NOT (process.executable:"\-")))
+index: winlogbeat-*
+max_threshold: 10
+metric_agg_key: winlog.event_data.TargetUserName.keyword
+metric_agg_type: cardinality
+name: fe563ab6-ded4-4916-b49f-a3a8445fe280-Multiple-Users-Failing-to-Authenticate-from-Single-Process
+priority: 3
+query_key: process.executable.keyword
+realert:
+  minutes: 0
+type: metric_aggregation
+

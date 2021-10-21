@@ -1,0 +1,5 @@
+alert_methods: http_post
+http_post_url: test
+http_post_include_rule_metadata:
+realert_time: 5m
+import: BaseRule.config

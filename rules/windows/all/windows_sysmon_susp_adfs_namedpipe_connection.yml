@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects suspicious local connections via a named pipe to the AD FS configuration database (Windows Internal Database). Used to access information such as the AD FS configuration settings which contains sensitive information used to sign SAML tokens.
+filter:
+- query:
+    query_string:
+      query: (file.name:"\\MICROSOFT##WID\\tsql\\query" AND (NOT (process.executable.keyword:(*Microsoft.IdentityServer.ServiceHost.exe OR *Microsoft.Identity.Health.Adfs.PshSurrogate.exe OR *AzureADConnect.exe OR *Microsoft.Tri.Sensor.exe OR *wsmprovhost.exe OR *mmc.exe OR *sqlservr.exe))))
+index: winlogbeat-*
+name: 1ea13e8c-03ea-409b-877d-ce5c3d2c1cb3-ADFS-Database-Named-Pipe-Connection
+priority: 1
+realert:
+  minutes: 0
+type: any
+

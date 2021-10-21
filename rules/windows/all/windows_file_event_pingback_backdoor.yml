@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects the use of Pingback backdoor that creates ICMP tunnel for C2 as described in the trustwave report
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*updata.exe AND file.path:"C\:\\Windows\\oci.dll")
+index: winlogbeat-*
+name: 2bd63d53-84d4-4210-80ff-bf0658f1bf78-Pingback-Backdoor
+priority: 2
+realert:
+  minutes: 0
+type: any
+

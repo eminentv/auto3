@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects the manipulation of persistent URLs which can be malicious
+filter:
+- query:
+    query_string:
+      query: (registry.path.keyword:(*Software\\Microsoft\\Office\\* OR *Outlook\\WebView\\*) AND registry.path.keyword:*URL AND registry.path.keyword:(*Calendar* OR *Inbox*))
+index: winlogbeat-*
+name: ddd171b5-2cc6-4975-9e78-f0eccd08cc76-Persistent-Outlook-Landing-Pages
+priority: 2
+realert:
+  minutes: 0
+type: any
+

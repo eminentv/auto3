@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects changes to the Registry in which a monitor program gets registered to dump process memory of the lsass.exe process memory
+filter:
+- query:
+    query_string:
+      query: registry.path.keyword:*Microsoft\\Windows\ NT\\CurrentVersion\\SilentProcessExit\\lsass.exe*
+index: winlogbeat-*
+name: 55e29995-75e7-451a-bef0-6225e2f13597-SilentProcessExit-Monitor-Registrytion-for-LSASS
+priority: 1
+realert:
+  minutes: 0
+type: any
+

@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Attempts to load dismcore.dll after dropping it
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\dism.exe AND file.path.keyword:*\\dismcore.dll)
+index: winlogbeat-*
+name: a5ea83a7-05a5-44c1-be2e-addccbbd8c03-UAC-Bypass-With-Fake-DLL
+priority: 2
+realert:
+  minutes: 0
+type: any
+

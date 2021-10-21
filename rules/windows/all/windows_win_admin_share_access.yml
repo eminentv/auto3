@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects access to $ADMIN share
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND (event.code:"5140" AND winlog.event_data.ShareName:"Admin$") AND (NOT (user.name.keyword:*$)))
+index: winlogbeat-*
+name: 098d7118-55bc-4912-a836-dc6483a8d150-Access-to-ADMIN$-Share
+priority: 4
+realert:
+  minutes: 0
+type: any
+

@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects Golden Chickens deployment method as used by Evilnum in report published in July 2020
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:*regsvr32* AND process.command_line.keyword:*\/s* AND process.command_line.keyword:*\/i* AND process.command_line.keyword:*\\AppData\\Roaming\\* AND process.command_line.keyword:*.ocx*)
+index: winlogbeat-*
+name: 8acf3cfa-1e8c-4099-83de-a0c4038e18f0-EvilNum-Golden-Chickens-Deployment-via-OCX-Files
+priority: 1
+realert:
+  minutes: 0
+type: any
+

@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects WMI spawning PowerShell
+filter:
+- query:
+    query_string:
+      query: (((process.parent.executable.keyword:*\\wmiprvse.exe AND process.executable.keyword:*\\powershell.exe) AND (NOT (process.command_line:"null"))) AND (NOT (NOT _exists_:process.command_line)))
+index: winlogbeat-*
+name: 692f0bec-83ba-4d04-af7e-e884a96059b6-WMI-Spawning-Windows-PowerShell
+priority: 2
+realert:
+  minutes: 0
+type: any
+

@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Adversaries may disable security tools to avoid possible detection of their tools and activities by removing Windows Defender Definition Files
+filter:
+- query:
+    query_string:
+      query: (process.pe.original_file_name:"MpCmdRun.exe" AND process.command_line.keyword:*\ \-RemoveDefinitions* AND process.command_line.keyword:*\ \-All*)
+index: winlogbeat-*
+name: 9719a8aa-401c-41af-8108-ced7ec9cd75c-Remove-Windows-Defender-Definition-Files
+priority: 3
+realert:
+  minutes: 0
+type: any
+

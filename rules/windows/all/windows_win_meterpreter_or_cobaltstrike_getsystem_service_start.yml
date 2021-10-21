@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects the use of getsystem Meterpreter/Cobalt Strike command by detecting a specific service starting
+filter:
+- query:
+    query_string:
+      query: ((process.parent.executable.keyword:*\\services.exe AND ((process.command_line.keyword:*cmd* AND process.command_line.keyword:*\/c* AND process.command_line.keyword:*echo* AND process.command_line.keyword:*\\pipe\\*) OR (process.command_line.keyword:*%COMSPEC%* AND process.command_line.keyword:*\/c* AND process.command_line.keyword:*echo* AND process.command_line.keyword:*\\pipe\\*) OR (process.command_line.keyword:*cmd.exe* AND process.command_line.keyword:*\/c* AND process.command_line.keyword:*echo* AND process.command_line.keyword:*\\pipe\\*) OR (process.command_line.keyword:*rundll32* AND process.command_line.keyword:*.dll,a* AND process.command_line.keyword:*\/p\:*))) AND (NOT (process.command_line.keyword:*MpCmdRun*)))
+index: winlogbeat-*
+name: 15619216-e993-4721-b590-4c520615a67d-Meterpreter-or-Cobalt-Strike-Getsystem-Service-Start
+priority: 2
+realert:
+  minutes: 0
+type: any
+

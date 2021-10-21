@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects audio capture via PowerShell Cmdlet.
+filter:
+- query:
+    query_string:
+      query: process.command_line.keyword:*WindowsAudioDevice\-Powershell\-Cmdlet*
+index: winlogbeat-*
+name: 932fb0d8-692b-4b0f-a26e-5643a50fe7d6-Audio-Capture-via-PowerShell
+priority: 3
+realert:
+  minutes: 0
+type: any
+

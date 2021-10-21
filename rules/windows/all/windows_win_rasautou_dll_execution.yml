@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects using Rasautou.exe for loading arbitrary .DLL specified in -d option and executes the export specified in -p.
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\rasautou.exe OR process.pe.original_file_name:"rasdlui.exe") AND (process.command_line.keyword:*\-d* AND process.command_line.keyword:*\-p*))
+index: winlogbeat-*
+name: cd3d1298-eb3b-476c-ac67-12847de55813-DLL-Execution-via-Rasautou.exe
+priority: 3
+realert:
+  minutes: 0
+type: any
+
