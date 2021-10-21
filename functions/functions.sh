@@ -13,7 +13,7 @@ function aws_all () {
     RULE_PATH=${UPDATE_RULES}/aws/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".config" >> $file
+        echo "import: /rules/"${RULE}".config" >> $file
       done
 }
 
@@ -23,7 +23,7 @@ function aws_critical () {
     RULE_PATH=${UPDATE_RULES}/aws/critical
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".config" >> $file
+        echo "import: /rules/"${RULE}".config" >> $file
       done
 }
 
@@ -65,7 +65,7 @@ function o365_all () {
     RULE_PATH=${UPDATE_RULES}/o365/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".config" >> $file
+        echo "import: /rules/"${RULE}".config" >> $file
       done
 }
 
@@ -116,7 +116,7 @@ function linux_all () {
     RULE_PATH=${UPDATE_RULES}/linux/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".config" >> $file
+        echo "import: /rules/"${RULE}".config" >> $file
       done
 }
 
@@ -167,7 +167,7 @@ function windows_all () {
     RULE_PATH=${UPDATE_RULES}/linux/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".config" >> $file
+        echo "import: /rules/"${RULE}".config" >> $file
       done
 }
 
@@ -218,7 +218,7 @@ function network_all () {
     RULE_PATH=${UPDATE_RULES}/network/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".config" >> $file
+        echo "import: /rules/"${RULE}".config" >> $file
       done
 }
 
@@ -229,6 +229,6 @@ function proxy_all () {
     RULE_PATH=${UPDATE_RULES}/proxy/all
     for file in ${RULE_PATH}/*;
       do 
-        echo "import: "${RULE}".config" >> $file
+        echo "import: /rules/"${RULE}".config" >> $file
       done
 }

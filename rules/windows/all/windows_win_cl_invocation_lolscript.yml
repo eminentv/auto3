@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects Execution via SyncInvoke in CL_Invocation.ps1 module
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:*CL_Invocation.ps1* AND process.command_line.keyword:*SyncInvoke*)
+index: winlogbeat-*
+name: a0459f02-ac51-4c09-b511-b8c9203fc429-Execution-via-CL_Invocation.ps1
+priority: 2
+realert:
+  minutes: 0
+type: any
+

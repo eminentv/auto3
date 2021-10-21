@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects backup catalog deletions
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Application" AND event.code:"524" AND winlog.provider_name:"Microsoft\-Windows\-Backup")
+index: winlogbeat-*
+name: 9703792d-fd9a-456d-a672-ff92efe4806a-Backup-Catalog-Deleted
+priority: 3
+realert:
+  minutes: 0
+type: any
+

@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects CLR DLL being loaded by an Office Product
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:(*\\winword.exe OR *\\powerpnt.exe OR *\\excel.exe OR *\\outlook.exe) AND file.path.keyword:*\\clr.dll*)
+index: winlogbeat-*
+name: d13c43f0-f66b-4279-8b2c-5912077c1780-CLR-DLL-Loaded-Via-Office-Applications
+priority: 2
+realert:
+  minutes: 0
+type: any
+

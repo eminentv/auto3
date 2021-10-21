@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Focuses on trivial artifacts observed in variants of prevalent offensive ps1 payloads, including Cobalt Strike Beacon, PoshC2, Powerview, Letmein, Empire, Powersploit, and other attack payloads that often undergo minimal changes by attackers due to bad opsec.
+filter:
+- query:
+    query_string:
+      query: winlog.event_data.Payload.keyword:(*$DoIt* OR *harmj0y* OR *mattifestation* OR *_RastaMouse* OR *tifkin_* OR *0xdeadbeef*)
+index: winlogbeat-*
+name: 8d31a8ce-46b5-4dd6-bdc3-680931f1db86-Bad-Opsec-Powershell-Code-Artifacts
+priority: 1
+realert:
+  minutes: 0
+type: any
+

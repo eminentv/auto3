@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects PsExec service installation and execution events (service and Sysmon)
+filter:
+- query:
+    query_string:
+      query: file.path.keyword:*\\PSEXESVC.exe
+index: winlogbeat-*
+name: 259e5a6a-b8d2-4c38-86e2-26c5e651361d-PsExec-Tool-Execution
+priority: 4
+realert:
+  minutes: 0
+type: any
+

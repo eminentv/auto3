@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Find local accounts being created or modified as well as remote authentication configurations
+filter:
+- query:
+    query_string:
+      query: \*.keyword:(*username* OR *aaa*)
+index: filebeat-10*
+name: 6d844f0f-1c18-41af-8f19-33e7654edfc3-Cisco-Local-Accounts
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Network-All.config

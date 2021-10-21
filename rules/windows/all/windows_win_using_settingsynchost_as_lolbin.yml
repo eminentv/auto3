@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects using SettingSyncHost.exe to run hijacked binary
+filter:
+- query:
+    query_string:
+      query: ((NOT (process.executable.keyword:(C\:\\Windows\\System32\\* OR C\:\\Windows\\SysWOW64\\*))) AND (process.parent.command_line.keyword:*cmd.exe\ \/c* AND process.parent.command_line.keyword:*RoamDiag.cmd* AND process.parent.command_line.keyword:*\-outputpath*))
+index: winlogbeat-*
+name: b2ddd389-f676-4ac4-845a-e00781a48e5f-Using-SettingSyncHost.exe-as-LOLBin
+priority: 2
+realert:
+  minutes: 0
+type: any
+

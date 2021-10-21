@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects the use of CreateMiniDump hack tool used to dump the LSASS process memory for credential extraction on the attacker's machine
+filter:
+- query:
+    query_string:
+      query: file.path.keyword:*\\lsass.dmp
+index: winlogbeat-*
+name: db2110f3-479d-42a6-94fb-d35bc1e46492-CreateMiniDump-Hacktool
+priority: 2
+realert:
+  minutes: 0
+type: any
+

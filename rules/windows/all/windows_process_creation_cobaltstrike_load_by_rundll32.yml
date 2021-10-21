@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Rundll32 can be use by Cobalt Strike with StartW function to load DLLs from the command line.
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:*rundll32.exe* AND process.command_line.keyword:*.dll* AND process.command_line.keyword:*StartW*)
+index: winlogbeat-*
+name: ae9c6a7c-9521-42a6-915e-5aaa8689d529-CobaltStrike-Load-by-Rundll32
+priority: 1
+realert:
+  minutes: 0
+type: any
+

@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Shadow Copies storage symbolic link creation using operating systems utilities
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:*mklink* AND process.command_line.keyword:*HarddiskVolumeShadowCopy*)
+index: winlogbeat-*
+name: 40b19fa6-d835-400c-b301-41f3a2baacaf-Shadow-Copies-Access-via-Symlink
+priority: 3
+realert:
+  minutes: 0
+type: any
+

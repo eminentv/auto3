@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects installation of a new shim using sdbinst.exe. A shim can be used to load malicious DLLs into applications.
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\sdbinst.exe AND process.command_line.keyword:*.sdb*) AND (NOT (process.command_line.keyword:*iisexpressshim.sdb*)))
+index: winlogbeat-*
+name: 517490a7-115a-48c6-8862-1a481504d5a8-Possible-Shim-Database-Persistence-via-sdbinst.exe
+priority: 2
+realert:
+  minutes: 0
+type: any
+

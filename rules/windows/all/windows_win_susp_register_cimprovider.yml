@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects using register-cimprovider.exe to execute arbitrary dll file.
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\register\-cimprovider.exe AND process.command_line.keyword:*\-path* AND process.command_line.keyword:*dll*)
+index: winlogbeat-*
+name: a2910908-e86f-4687-aeba-76a5f996e652-DLL-Execution-Via-Register-cimprovider.exe
+priority: 3
+realert:
+  minutes: 0
+type: any
+

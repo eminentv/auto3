@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects Obfuscated Powershell via RUNDLL LAUNCHER
+filter:
+- query:
+    query_string:
+      query: winlog.event_data.Payload.keyword:/(?i).*rundll32(?:\.exe)?(?:\s+)?shell32\.dll.*shellexec_rundll.*powershell.*\"/
+index: winlogbeat-*
+name: a23791fe-8846-485a-b16b-ca691e1b03d4-Invoke-Obfuscation-RUNDLL-LAUNCHER
+priority: 3
+realert:
+  minutes: 0
+type: any
+

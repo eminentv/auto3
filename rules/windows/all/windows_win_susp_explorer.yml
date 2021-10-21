@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Attackers can use explorer.exe for evading defense mechanisms
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\explorer.exe AND process.parent.executable.keyword:*\\cmd.exe AND process.command_line.keyword:*explorer.exe*)
+index: winlogbeat-*
+name: 9eb271b9-24ae-4cd4-9465-19cfc1047f3e-Proxy-Execution-Via-Explorer.exe
+priority: 4
+realert:
+  minutes: 0
+type: any
+

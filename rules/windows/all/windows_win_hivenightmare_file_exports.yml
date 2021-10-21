@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects files written by the different tools that exploit HiveNightmare
+filter:
+- query:
+    query_string:
+      query: (file.path.keyword:(*\\hive_sam_* OR *\\SAM\-2021\-* OR *\\SAM\-2022\-* OR *\\SAM\-haxx* OR *\\Sam.save*) OR file.path:"C\:\\windows\\temp\\sam")
+index: winlogbeat-*
+name: 6ea858a8-ba71-4a12-b2cc-5d83312404c7-Typical-HiveNightmare-SAM-File-Export
+priority: 2
+realert:
+  minutes: 0
+type: any
+

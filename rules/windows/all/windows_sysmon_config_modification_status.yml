@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Someone try to hide from Sysmon
+filter:
+- query:
+    query_string:
+      query: (winlog.event_data.State:"Stopped" OR "Sysmon\ config\ state\ changed")
+index: winlogbeat-*
+name: 1f2b5353-573f-4880-8e33-7d04dcf97744-Sysmon-Configuration-Modification
+priority: 2
+realert:
+  minutes: 0
+type: any
+

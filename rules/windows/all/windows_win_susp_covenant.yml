@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects suspicious command lines used in Covenant luanchers
+filter:
+- query:
+    query_string:
+      query: ((process.command_line.keyword:*\-Sta* AND process.command_line.keyword:*\-Nop* AND process.command_line.keyword:*\-Window* AND process.command_line.keyword:*Hidden* AND process.command_line.keyword:(*\-Command* OR *\-EncodedCommand*)) OR process.command_line.keyword:(*sv\ o\ \(New\-Object\ IO.MemorySteam\);sv\ d\ * OR *mshta\ file.hta* OR *GruntHTTP* OR *\-EncodedCommand\ cwB2ACAAbwAgA*))
+index: winlogbeat-*
+name: c260b6db-48ba-4b4a-a76f-2f67644e99d2-Covenant-Launcher-Indicators
+priority: 2
+realert:
+  minutes: 0
+type: any
+

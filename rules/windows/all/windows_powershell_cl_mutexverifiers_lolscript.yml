@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects Execution via runAfterCancelProcess in CL_Mutexverifiers.ps1 module
+filter:
+- query:
+    query_string:
+      query: (powershell.file.script_block_text.keyword:*CL_Mutexverifiers.ps1* AND powershell.file.script_block_text.keyword:*runAfterCancelProcess*)
+index: winlogbeat-*
+name: 39776c99-1c7b-4ba0-b5aa-641525eee1a4-Execution-via-CL_Mutexverifiers.ps1
+priority: 2
+realert:
+  minutes: 0
+type: any
+

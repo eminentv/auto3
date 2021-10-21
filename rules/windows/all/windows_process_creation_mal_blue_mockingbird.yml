@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Attempts to detect system changes made by Blue Mockingbird
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\cmd.exe AND process.command_line.keyword:*sc\ config* AND process.command_line.keyword:*wercplsupporte.dll*) OR (process.executable.keyword:*\\wmic.exe AND process.command_line.keyword:*COR_PROFILER))
+index: winlogbeat-*
+name: c3198a27-23a0-4c2c-af19-e5328d49680e-Blue-Mockingbird
+priority: 2
+realert:
+  minutes: 0
+type: any
+

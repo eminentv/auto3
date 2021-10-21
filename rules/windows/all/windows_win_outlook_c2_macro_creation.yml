@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects the creation of a macro file for Outlook. Goes with win_outlook_c2_registry_key. VbaProject.OTM is explicitly mentioned in T1137. Particularly interesting if both events Registry & File Creation happens at the same time.
+filter:
+- query:
+    query_string:
+      query: file.path.keyword:*\\Microsoft\\Outlook\\VbaProject.OTM
+index: winlogbeat-*
+name: 8c31f563-f9a7-450c-bfa8-35f8f32f1f61-Outlook-C2-Macro-Creation
+priority: 3
+realert:
+  minutes: 0
+type: any
+

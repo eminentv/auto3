@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects a regsvr.exe execution that doesn't contain a DLL in the command line
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\regsvr32.exe AND (NOT (process.command_line.keyword:(*.dll* OR *.ocx* OR *.cpl* OR *.ax* OR *.bav* OR *.ppl*))))
+index: winlogbeat-*
+name: 50919691-7302-437f-8e10-1fe088afa145-Regsvr32-Command-Line-Without-DLL
+priority: 2
+realert:
+  minutes: 0
+type: any
+

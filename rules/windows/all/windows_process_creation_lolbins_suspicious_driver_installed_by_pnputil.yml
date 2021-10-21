@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects when a possible suspicious driver is being installed via pnputil.exe lolbin
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:(*\-i* OR *\/install* OR *\-a* OR *\/add\-driver* OR *.inf*) AND process.executable.keyword:*\\pnputil.exe)
+index: winlogbeat-*
+name: a2ea3ae7-d3d0-40a0-a55c-25a45c87cac1-Suspicious-Driver-Install-by-pnputil.exe
+priority: 3
+realert:
+  minutes: 0
+type: any
+

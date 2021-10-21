@@ -1,0 +1,14 @@
+alert:
+- debug
+description: Detects Too long PowerShell command lines
+filter:
+- query:
+    query_string:
+      query: ((process.command_line.keyword:(*powershell* OR *pwsh*) OR process.pe.description:"Windows\ Powershell" OR process.pe.product:"PowerShell\ Core\ 6") AND process.command_line.keyword:/.{1000,}/)
+index: winlogbeat-*
+name: d0d28567-4b9a-45e2-8bbc-fb1b66a1f7f6-Too-Long-PowerShell-Commandlines
+priority: 3
+realert:
+  minutes: 0
+type: any
+
