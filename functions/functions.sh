@@ -61,7 +61,7 @@ function aws_low () {
 # O365
 function o365_all () {
     ${SIGMACTOOL} -t elastalert -c ${CONFIGS}/ecs-filebeat-10.yml -rI ${RULES}/cloud/m365 -o ${UPDATE_RULES}/o365/all/o365_ -e yml
-    RULE=O365-all
+    RULE=O365-All
     RULE_PATH=${UPDATE_RULES}/o365/all
     for file in ${RULE_PATH}/*;
       do 
@@ -112,7 +112,7 @@ function o365_low () {
 # Linux
 function linux_all () {
     ${SIGMACTOOL} -t elastalert -c ${CONFIGS}/ecs-filebeat-combined.yml -rI ${RULES}/linux -o ${UPDATE_RULES}/linux/all/linux_ -e yml
-    RULE=AWS-All
+    RULE=Linux-All
     RULE_PATH=${UPDATE_RULES}/linux/all
     for file in ${RULE_PATH}/*;
       do 
@@ -163,7 +163,7 @@ function linux_low () {
 # Windows
 function windows_all () {
     ${SIGMACTOOL} -t elastalert -c ${CONFIGS}/winlogbeat-modules-enabled.yml -rI ${RULES}/windows -o ${UPDATE_RULES}/windows/all/windows_ -e yml
-    RULE=AWS-All
+    RULE=Windows-All
     RULE_PATH=${UPDATE_RULES}/linux/all
     for file in ${RULE_PATH}/*;
       do 
