@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects potential COM object hijacking leveraging the COM Search Order
+filter:
+- query:
+    query_string:
+      query: ((registry.path.keyword:(HKCR\\CLSID\\* OR HKCU\\Software\\Classes\\CLSID\\*) AND registry.path.keyword:*\\InprocServer32\\\(Default\)) AND (NOT ((((winlog.event_data.Details.keyword:(*%%systemroot%%\\system32\\* OR *%%systemroot%%\\SysWow64\\*) OR (winlog.event_data.Details.keyword:*\\AppData\\Local\\Microsoft\\OneDrive\\* AND winlog.event_data.Details.keyword:(*\\FileCoAuthLib64.dll* OR *\\FileSyncShell64.dll* OR *\\FileSyncApi64.dll*))) OR (winlog.event_data.Details.keyword:*\\AppData\\Local\\Microsoft\\TeamsMeetingAddin\\* AND winlog.event_data.Details.keyword:*\\Microsoft.Teams.AddinLoader.dll*)) OR (winlog.event_data.Details.keyword:*\\AppData\\Roaming\\Dropbox\\* AND winlog.event_data.Details.keyword:*\\DropboxExt64.*.dll*)))))
+index: winlogbeat-*
+name: a0ff33d8-79e4-4cef-b4f3-9dc4133ccd12-Windows-Registry-Persistence-COM-Search-Order-Hijacking
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects usage of attrib.exe to hide files from users.
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\attrib.exe AND process.command_line.keyword:*\ \+h\ *) AND (NOT ((process.command_line.keyword:*\\desktop.ini\ * OR (process.parent.executable.keyword:*\\cmd.exe AND process.command_line.keyword:\+R\ \+H\ \+S\ \+A\ \\*.cui AND process.parent.command_line.keyword:C\:\\WINDOWS\\system32\\*.bat)))))
+index: winlogbeat-*
+name: 4281cb20-2994-4580-aa63-c8b86d019934-Hiding-Files-with-Attrib.exe
+priority: 4
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

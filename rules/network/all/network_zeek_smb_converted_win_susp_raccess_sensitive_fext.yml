@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects known sensitive file extensions via Zeek
+filter:
+- query:
+    query_string:
+      query: name.keyword:(*.pst OR *.ost OR *.msg OR *.nst OR *.oab OR *.edb OR *.nsf OR *.bak OR *.dmp OR *.kirbi OR *\\groups.xml OR *.rdp)
+index: filebeat-10*
+name: 286b47ed-f6fe-40b3-b3a8-35129acd43bc-Suspicious-Access-to-Sensitive-File-Extensions---Zeek
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Network-All.config

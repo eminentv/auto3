@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects keywords that could indicate clearing PowerShell history
+filter:
+- query:
+    query_string:
+      query: "((winlog.event_data.Payload.keyword:(*del* OR *Remove\\-Item* OR *rm*) AND winlog.event_data.Payload.keyword:*\\(Get\\-PSReadlineOption\\).HistorySavePath*) OR (winlog.event_data.Payload.keyword:*Set\\-PSReadlineOption* AND winlog.event_data.Payload.keyword:*\u2013HistorySaveStyle* AND winlog.event_data.Payload.keyword:*SaveNothing*))"
+index: winlogbeat-*
+name: f99276ad-d122-4989-a09a-d00904a5f9d2-Clear-PowerShell-History
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

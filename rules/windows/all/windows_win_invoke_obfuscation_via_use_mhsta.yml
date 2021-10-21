@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects Obfuscated Powershell via use MSHTA in Scripts
+filter:
+- query:
+    query_string:
+      query: process.command_line.keyword:/(?i).*(set).*(&&).*(mshta).*(vbscript:createobject).*(\.run).*\(window\.close\).*"/
+index: winlogbeat-*
+name: ac20ae82-8758-4f38-958e-b44a3140ca88-Invoke-Obfuscation-Via-Use-MSHTA
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

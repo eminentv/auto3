@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Someone try to hide from Sysmon
+filter:
+- query:
+    query_string:
+      query: winlog.event_data.Description.keyword:(*Failed\ to\ open\ service\ configuration\ with\ error* OR *Failed\ to\ connect\ to\ the\ driver\ to\ update\ configuration*)
+index: winlogbeat-*
+name: 815cd91b-7dbc-4247-841a-d7dd1392b0a8-Sysmon-Configuration-Error
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

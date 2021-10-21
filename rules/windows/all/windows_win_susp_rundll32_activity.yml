@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects suspicious process related to rundll32 based on arguments
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:(*javascript\:* OR *.RegisterXLL*) OR (process.command_line.keyword:*url.dll* AND process.command_line.keyword:*OpenURL*) OR (process.command_line.keyword:*url.dll* AND process.command_line.keyword:*OpenURLA*) OR (process.command_line.keyword:*url.dll* AND process.command_line.keyword:*FileProtocolHandler*) OR (process.command_line.keyword:*zipfldr.dll* AND process.command_line.keyword:*RouteTheCall*) OR (process.command_line.keyword:*shell32.dll* AND process.command_line.keyword:*Control_RunDLL*) OR (process.command_line.keyword:*shell32.dll* AND process.command_line.keyword:*ShellExec_RunDLL*) OR (process.command_line.keyword:*mshtml.dll* AND process.command_line.keyword:*PrintHTML*) OR (process.command_line.keyword:*advpack.dll* AND process.command_line.keyword:*LaunchINFSection*) OR (process.command_line.keyword:*advpack.dll* AND process.command_line.keyword:*RegisterOCX*) OR (process.command_line.keyword:*ieadvpack.dll* AND process.command_line.keyword:*LaunchINFSection*) OR (process.command_line.keyword:*ieadvpack.dll* AND process.command_line.keyword:*RegisterOCX*) OR (process.command_line.keyword:*ieframe.dll* AND process.command_line.keyword:*OpenURL*) OR (process.command_line.keyword:*shdocvw.dll* AND process.command_line.keyword:*OpenURL*) OR (process.command_line.keyword:*syssetup.dll* AND process.command_line.keyword:*SetupInfObjectInstallAction'*) OR (process.command_line.keyword:*setupapi.dll* AND process.command_line.keyword:*InstallHinfSection*) OR (process.command_line.keyword:*pcwutl.dll* AND process.command_line.keyword:*LaunchApplication*) OR (process.command_line.keyword:*dfshim.dll* AND process.command_line.keyword:*ShOpenVerbApplication*))
+index: winlogbeat-*
+name: e593cf51-88db-4ee1-b920-37e89012a3c9-Suspicious-Rundll32-Activity
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects the creation of a schtask via PowerSploit or Empire Default Configuration.
+filter:
+- query:
+    query_string:
+      query: (process.parent.executable.keyword:*\\powershell.exe AND process.executable.keyword:*\\schtasks.exe AND process.command_line.keyword:*\/Create* AND process.command_line.keyword:*\/SC* AND process.command_line.keyword:(*ONLOGON* OR *DAILY* OR *ONIDLE* OR *Updater*) AND process.command_line.keyword:*\/TN* AND process.command_line.keyword:*Updater* AND process.command_line.keyword:*\/TR* AND process.command_line.keyword:*powershell*)
+index: winlogbeat-*
+name: 56c217c3-2de2-479b-990f-5c109ba8458f-Default-PowerSploit-and-Empire-Schtasks-Persistence
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

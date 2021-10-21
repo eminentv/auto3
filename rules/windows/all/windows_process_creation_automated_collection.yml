@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Once established within a system or network, an adversary may use automated techniques for collecting internal data.
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:(*.doc* OR *.docx* OR *.xls* OR *.xlsx* OR *.ppt* OR *.pptx* OR *.rtf* OR *.pdf* OR *.txt*) AND ((process.command_line.keyword:*dir\ * AND process.command_line.keyword:*\ \/b\ * AND process.command_line.keyword:*\ \/s\ *) OR (process.pe.original_file_name:"FINDSTR.EXE" AND process.command_line.keyword:*\ \/e\ *)))
+index: winlogbeat-*
+name: f576a613-2392-4067-9d1a-9345fb58d8d1-Automated-Collection-Command-Prompt
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

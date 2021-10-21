@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detection of logins performed with WMI
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND event.code:"4624" AND process.executable.keyword:*\\WmiPrvSE.exe)
+index: winlogbeat-*
+name: 5af54681-df95-4c26-854f-2565e13cfab0-Login-with-WMI
+priority: 4
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

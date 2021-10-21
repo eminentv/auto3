@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Shadow Copies deletion using operating systems utilities
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:*delete* AND ((process.executable.keyword:(*\\powershell.exe OR *\\wmic.exe OR *\\vssadmin.exe OR *\\diskshadow.exe) AND process.command_line.keyword:*shadow*) OR (process.executable.keyword:*\\wbadmin.exe AND process.command_line.keyword:*catalog* AND process.command_line.keyword:*quiet*)))
+index: winlogbeat-*
+name: c947b146-0abc-4c87-9c64-b17e9d7274a2-Shadow-Copies-Deletion-Using-Operating-Systems-Utilities
+priority: 1
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

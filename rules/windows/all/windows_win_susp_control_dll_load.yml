@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects suspicious Rundll32 execution from control.exe as used by Equation Group and Exploit Kits
+filter:
+- query:
+    query_string:
+      query: ((process.parent.executable.keyword:*\\System32\\control.exe AND process.executable.keyword:*\\rundll32.exe\ ) AND (NOT (process.command_line.keyword:*Shell32.dll*)))
+index: winlogbeat-*
+name: d7eb979b-c2b5-4a6f-a3a7-c87ce6763819-Suspicious-Control-Panel-DLL-Load
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

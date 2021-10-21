@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects specific combinations of encoding methods in the PowerShell command lines
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\powershell.exe AND ((((process.command_line.keyword:(*ToInt* OR *ToDecimal* OR *ToByte* OR *ToUint* OR *ToSingle* OR *ToSByte*) AND process.command_line.keyword:(*ToChar* OR *ToString* OR *String*)) OR (process.command_line.keyword:*char* AND process.command_line.keyword:*join*)) OR (process.command_line.keyword:*split* AND process.command_line.keyword:*join*)) OR (process.command_line.keyword:*ForEach* AND process.command_line.keyword:*Xor*) OR process.command_line.keyword:*cOnvErTTO\-SECUreStRIng*))
+index: winlogbeat-*
+name: cdf05894-89e7-4ead-b2b0-0a5f97a90f2f-Encoded-PowerShell-Command-Line
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

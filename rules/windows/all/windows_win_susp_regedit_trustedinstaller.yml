@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects a regedit started with TrustedInstaller privileges or by ProcessHacker.exe
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\regedit.exe AND process.parent.executable.keyword:(*\\TrustedInstaller.exe OR *\\ProcessHacker.exe))
+index: winlogbeat-*
+name: 883835a7-df45-43e4-bf1d-4268768afda4-Regedit-as-Trusted-Installer
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects Obfuscated Powershell via Stdin in Scripts
+filter:
+- query:
+    query_string:
+      query: winlog.event_data.Payload.keyword:/(?i).*(set).*&&\s?set.*(environment|invoke|\${?input).*&&.*"/
+index: winlogbeat-*
+name: c72aca44-8d52-45ad-8f81-f96c4d3c755e-Invoke-Obfuscation-Via-Stdin
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects suspicious encoded payloads in WMI Event Consumers
+filter:
+- query:
+    query_string:
+      query: process.executable.keyword:(*V3JpdGVQcm9jZXNzTWVtb3J5* OR *dyaXRlUHJvY2Vzc01lbW9ye* OR *Xcml0ZVByb2Nlc3NNZW1vcn* OR *VGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1vZG* OR *RoaXMgcHJvZ3JhbSBjYW5ub3QgYmUgcnVuIGluIERPUyBtb2Rl* OR *UaGlzIHByb2dyYW0gY2Fubm90IGJlIHJ1biBpbiBET1MgbW9kZ* OR *VGhpcyBwcm9ncmFtIG11c3QgYmUgcnVuIHVuZGVyIFdpbjMy* OR *RoaXMgcHJvZ3JhbSBtdXN0IGJlIHJ1biB1bmRlciBXaW4zM* OR *UaGlzIHByb2dyYW0gbXVzdCBiZSBydW4gdW5kZXIgV2luMz*)
+index: winlogbeat-*
+name: 83844185-1c5b-45bc-bcf3-b5bf3084ca5b-Suspicious-Encoded-Scripts-in-a-WMI-Consumer
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

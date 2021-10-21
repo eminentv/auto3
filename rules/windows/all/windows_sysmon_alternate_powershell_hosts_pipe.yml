@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects alternate PowerShell hosts potentially bypassing detections looking for powershell.exe
+filter:
+- query:
+    query_string:
+      query: (file.name.keyword:\\PSHost* AND (NOT (process.executable.keyword:(*\\powershell.exe OR *\\powershell_ise.exe))))
+index: winlogbeat-*
+name: 58cb02d5-78ce-4692-b3e1-dce850aae41a-Alternate-PowerShell-Hosts-Pipe
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

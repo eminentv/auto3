@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Accesschk is an access and privilege audit tool developed by SysInternal and often being used by attacker to verify if a privilege escalation process successful or not
+filter:
+- query:
+    query_string:
+      query: (winlog.event_data.IntegrityLevel:"Medium" AND (process.pe.product.keyword:*AccessChk OR process.pe.description.keyword:*Reports\ effective\ permissions*))
+index: winlogbeat-*
+name: c625d754-6a3d-4f65-9c9a-536aea960d37-Accesschk-Usage-After-Privilege-Escalation
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

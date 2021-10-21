@@ -1,0 +1,15 @@
+alert:
+- debug
+description: A general detection for processes creating PFX files. This could be an indicator of an adversary exporting a local certificate to a PFX file.
+filter:
+- query:
+    query_string:
+      query: file.path.keyword:*.pfx
+index: winlogbeat-*
+name: dca1b3e8-e043-4ec8-85d7-867f334b5724-Suspicious-PFX-File-Creation
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

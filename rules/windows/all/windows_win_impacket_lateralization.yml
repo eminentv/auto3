@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects wmiexec/dcomexec/atexec/smbexec from Impacket framework
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:*cmd.exe* AND process.command_line.keyword:*&1* AND ((process.parent.executable.keyword:(*\\wmiprvse.exe OR *\\mmc.exe OR *\\explorer.exe OR *\\services.exe) AND process.command_line.keyword:*\/Q* AND process.command_line.keyword:*\/c* AND process.command_line.keyword:*\\\\127.0.0.1\\*) OR (process.parent.command_line.keyword:(*svchost.exe\ \-k\ netsvcs* OR *taskeng.exe*) AND process.command_line.keyword:*\/C* AND process.command_line.keyword:*Windows\\Temp\\*)))
+index: winlogbeat-*
+name: 10c14723-61c7-4c75-92ca-9af245723ad2-Impacket-Lateralization-Detection
+priority: 1
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

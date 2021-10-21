@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects javaw.exe in AppData folder as used by Adwind / JRAT
+filter:
+- query:
+    query_string:
+      query: ((file.path.keyword:*\\AppData\\Roaming\\Oracle\\bin\\java* AND file.path.keyword:*.exe*) OR (file.path.keyword:*\\Retrive* AND file.path.keyword:*.vbs*))
+index: winlogbeat-*
+name: 0bcfabcb-7929-47f4-93d6-b33fb67d34d1-Adwind-RAT-/-JRAT
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

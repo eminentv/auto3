@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects the export of the target Registry key to a file.
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\regedit.exe AND process.command_line.keyword:*\ \/E\ *) AND (NOT ((process.command_line.keyword:(*hklm* OR *hkey_local_machine*) AND process.command_line.keyword:(*\\system OR *\\sam OR *\\security)))))
+index: winlogbeat-*
+name: f0e53e89-8d22-46ea-9db5-9d4796ee2f8a-Exports-Registry-Key-To-a-File
+priority: 4
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

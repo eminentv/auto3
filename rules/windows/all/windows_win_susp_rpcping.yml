@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects using Rpcping.exe to send a RPC test connection to the target server (-s) and force the NTLM hash to be sent in the process.
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\rpcping.exe AND process.command_line.keyword:(*\-s* OR *\/s*)) AND ((process.command_line.keyword:*\-u* AND process.command_line.keyword:*NTLM*) OR (process.command_line.keyword:*\/u* AND process.command_line.keyword:*NTLM*) OR (process.command_line.keyword:*\-t* AND process.command_line.keyword:*ncacn_np*) OR (process.command_line.keyword:*\/t* AND process.command_line.keyword:*ncacn_np*)))
+index: winlogbeat-*
+name: 93671f99-04eb-4ab4-a161-70d446a84003-Capture-Credentials-with-Rpcping.exe
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

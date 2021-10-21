@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects the export of a crital Registry key to a file.
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\regedit.exe AND process.command_line.keyword:*\ \/E\ * AND process.command_line.keyword:(*hklm* OR *hkey_local_machine*) AND process.command_line.keyword:(*\\system OR *\\sam OR *\\security))
+index: winlogbeat-*
+name: 82880171-b475-4201-b811-e9c826cd5eaa-Exports-Critical-Registry-Keys-To-a-File
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

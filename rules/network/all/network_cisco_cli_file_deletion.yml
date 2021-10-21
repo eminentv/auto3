@@ -1,0 +1,15 @@
+alert:
+- debug
+description: See what files are being deleted from flash file systems
+filter:
+- query:
+    query_string:
+      query: \*.keyword:(*erase* OR *delete* OR *format*)
+index: filebeat-10*
+name: 71d65515-c436-43c0-841b-236b1f32c21e-Cisco-File-Deletion
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Network-All.config

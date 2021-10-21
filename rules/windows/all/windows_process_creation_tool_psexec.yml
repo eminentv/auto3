@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects PsExec service installation and execution events (service and Sysmon)
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\PSEXESVC.exe AND winlog.event_data.User.keyword:NT\ AUTHORITY\\SYSTEM*)
+index: winlogbeat-*
+name: fa91cc36-24c9-41ce-b3c8-3bbc3f2f67ba-PsExec-Tool-Execution
+priority: 4
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

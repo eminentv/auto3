@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects invocation of Microsoft Workflow Compiler, which may permit the execution of arbitrary unsigned code.
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\Microsoft.Workflow.Compiler.exe OR (process.pe.original_file_name:"Microsoft.Workflow.Compiler.exe" AND process.command_line.keyword:*.xml*))
+index: winlogbeat-*
+name: 419dbf2b-8a9b-4bea-bf99-7544b050ec8d-Microsoft-Workflow-Compiler
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

@@ -164,7 +164,7 @@ function linux_low () {
 function windows_all () {
     ${SIGMACTOOL} -t elastalert -c ${CONFIGS}/winlogbeat-modules-enabled.yml -rI ${RULES}/windows -o ${UPDATE_RULES}/windows/all/windows_ -e yml
     RULE=Windows-All
-    RULE_PATH=${UPDATE_RULES}/linux/all
+    RULE_PATH=${UPDATE_RULES}/windows/all
     for file in ${RULE_PATH}/*;
       do 
         echo "import: /rules/"${RULE}".config" >> $file

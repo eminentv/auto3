@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects suspicious process run from unusual locations
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:(*\:\\RECYCLER\\* OR *\:\\SystemVolumeInformation\\*) OR process.executable.keyword:(C\:\\Windows\\Tasks\\* OR C\:\\Windows\\debug\\* OR C\:\\Windows\\fonts\\* OR C\:\\Windows\\help\\* OR C\:\\Windows\\drivers\\* OR C\:\\Windows\\addins\\* OR C\:\\Windows\\cursors\\* OR C\:\\Windows\\system32\\tasks\\*))
+index: winlogbeat-*
+name: 15b75071-74cc-47e0-b4c6-b43744a62a2b-Suspicious-Process-Start-Locations
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

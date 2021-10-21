@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects file creation patterns noticeable during the exploitation of CVE-2021-40444
+filter:
+- query:
+    query_string:
+      query: (process.executable:"\\winword.exe" AND ((file.path.keyword:*.cab AND file.path.keyword:*\\Windows\\INetCache*) OR (file.path.keyword:*\\AppData\\Local\\Temp\\* AND file.path.keyword:*.inf*)))
+index: winlogbeat-*
+name: 60c0a111-787a-4e8a-9262-ee485f3ef9d5-Suspicious-Word-Cab-File-Write-CVE-2021-40444
+priority: 1
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

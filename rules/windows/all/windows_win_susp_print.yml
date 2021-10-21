@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Attackers can use print.exe for remote file copy
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\print.exe AND process.command_line.keyword:print* AND process.command_line.keyword:*\/D* AND process.command_line.keyword:*.exe*) AND (NOT (process.command_line.keyword:*print.exe*)))
+index: winlogbeat-*
+name: bafac3d6-7de9-4dd9-8874-4a1194b493ed-Abusing-Print-Executable
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

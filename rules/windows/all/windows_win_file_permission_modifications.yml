@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects a file or folder's permissions being modified.
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:(*\\takeown.exe OR *\\cacls.exe OR *\\icacls.exe) AND process.command_line.keyword:*\/grant*) OR (process.executable.keyword:*\\attrib.exe AND process.command_line.keyword:*\-r*))
+index: winlogbeat-*
+name: 37ae075c-271b-459b-8d7b-55ad5f993dd8-File-or-Folder-Permissions-Modifications
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

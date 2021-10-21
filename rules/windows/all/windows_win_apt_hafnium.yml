@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects activity observed by different researchers to be HAFNIUM group activity (or related) on Exchange servers
+filter:
+- query:
+    query_string:
+      query: ((process.command_line.keyword:*attrib* AND process.command_line.keyword:*\ \+h\ * AND process.command_line.keyword:*\ \+s\ * AND process.command_line.keyword:*\ \+r\ * AND process.command_line.keyword:*.aspx*) OR (process.command_line.keyword:*schtasks* AND process.command_line.keyword:*VSPerfMon*) OR (process.command_line.keyword:*vssadmin\ list\ shadows* AND process.command_line.keyword:*Temp\\__output*) OR process.command_line.keyword:*%TEMP%\\execute.bat* OR process.executable.keyword:*Users\\Public\\opera\\Opera_browser.exe OR (process.executable.keyword:*Opera_browser.exe AND process.parent.executable.keyword:(*\\services.exe OR *\\svchost.exe)) OR process.executable.keyword:*\\ProgramData\\VSPerfMon\\* OR (process.command_line.keyword:*\ \-t7z\ * AND process.command_line.keyword:*C\:\\Programdata\\pst* AND process.command_line.keyword:*\\it.zip*) OR (process.executable.keyword:*\\makecab.exe AND process.command_line.keyword:(*Microsoft\\Exchange\ Server\\* OR *inetpub\\wwwroot*)) OR process.command_line.keyword:(*\\Temp\\xx.bat* OR *Windows\\WwanSvcdcs* OR *Windows\\Temp\\cw.exe*) OR (process.command_line.keyword:*\\comsvcs.dll* AND process.command_line.keyword:*Minidump* AND process.command_line.keyword:*\\inetpub\\wwwroot*) OR (process.command_line.keyword:*dsquery* AND process.command_line.keyword:*\ \-uco\ * AND process.command_line.keyword:*\\inetpub\\wwwroot*))
+index: winlogbeat-*
+name: bbb2dedd-a0e3-46ab-ba6c-6c82ae7a9aa7-Exchange-Exploitation-Activity
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects Obfuscated use of stdin to execute PowerShell
+filter:
+- query:
+    query_string:
+      query: winlog.event_data.Payload.keyword:/.*cmd.{0,5}(?:\/c|\/r).+powershell.+(?:\$\{?input\}?|noexit).+\"/
+index: winlogbeat-*
+name: 9ac8b09b-45de-4a07-9da1-0de8c09304a3-Invoke-Obfuscation-STDIN+-Launcher
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

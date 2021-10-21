@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects suspicious inline VBScript keywords as used by UNC2452
+filter:
+- query:
+    query_string:
+      query: ((process.command_line.keyword:*Execute* AND process.command_line.keyword:*CreateObject* AND process.command_line.keyword:*RegRead* AND process.command_line.keyword:*window.close* AND process.command_line.keyword:*\\Microsoft\\Windows\\CurrentVersion*) AND (NOT (process.command_line.keyword:*\\Software\\Microsoft\\Windows\\CurrentVersion\\Run*)))
+index: winlogbeat-*
+name: 20c3f09d-c53d-4e85-8b74-6aa50e2f1b61-Suspicious-VBScript-UN2452-Pattern
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects when when a mounted share is removed. Adversaries may remove share connections that are no longer useful in order to clean up traces of their operation
+filter:
+- query:
+    query_string:
+      query: (process.parent.executable.keyword:*\\net.exe AND process.executable.keyword:*\\net1.exe AND process.command_line.keyword:*share* AND process.command_line.keyword:*\/delete*)
+index: winlogbeat-*
+name: cb7c4a03-2871-43c0-9bbb-18bbdb079896-Mounted-Share-Deleted
+priority: 4
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

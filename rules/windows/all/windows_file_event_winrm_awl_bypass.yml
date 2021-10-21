@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects execution of attacker-controlled WsmPty.xsl or WsmTxt.xsl via winrm.vbs and copied cscript.exe (can be renamed)
+filter:
+- query:
+    query_string:
+      query: (file.path.keyword:(*WsmPty.xsl OR *WsmTxt.xsl) AND (NOT (file.path.keyword:(C\:\\Windows\\System32\\* OR C\:\\Windows\\SysWOW64\\*))))
+index: winlogbeat-*
+name: d353dac0-1b41-46c2-820c-d7d2561fc6ed-AWL-Bypass-with-Winrm.vbs-and-Malicious-WsmPty.xsl/WsmTxt.xsl
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

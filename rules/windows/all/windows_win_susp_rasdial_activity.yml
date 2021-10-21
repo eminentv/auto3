@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects suspicious process related to rasdial.exe
+filter:
+- query:
+    query_string:
+      query: process.executable.keyword:*rasdial.exe
+index: winlogbeat-*
+name: 6bba49bf-7f8c-47d6-a1bb-6b4dece4640e-Suspicious-RASdial-Activity
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

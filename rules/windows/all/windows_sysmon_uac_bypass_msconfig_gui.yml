@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects the pattern of UAC Bypass using a msconfig GUI hack (UACMe 55)
+filter:
+- query:
+    query_string:
+      query: (file.path.keyword:C\:\\Users\\* AND file.path.keyword:*\\AppData\\Local\\Temp\\pkgmgr.exe)
+index: winlogbeat-*
+name: 41bb431f-56d8-4691-bb56-ed34e390906f-UAC-Bypass-Using-MSConfig-Token-Modification---File
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

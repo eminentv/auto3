@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects a process spawned by the terminal service server process (this could be an indicator for an exploitation of CVE-2019-0708)
+filter:
+- query:
+    query_string:
+      query: ((process.parent.command_line.keyword:*\\svchost.exe* AND process.parent.command_line.keyword:*termsvcs*) AND (NOT (process.executable.keyword:*\\rdpclip.exe)))
+index: winlogbeat-*
+name: 1012f107-b8f1-4271-af30-5aed2de89b39-Terminal-Service-Process-Spawn
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

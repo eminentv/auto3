@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects the manipulation of persistent URLs which could execute malicious code
+filter:
+- query:
+    query_string:
+      query: (registry.path.keyword:(*Software\\Microsoft\\Office\\* OR *\\Outlook\\Today\\*) AND ((registry.path.keyword:*Stamp AND winlog.event_data.Details:"DWORD\ \(0x00000001\)") OR registry.path.keyword:*UserDefinedUrl))
+index: winlogbeat-*
+name: 487bb375-12ef-41f6-baae-c6a1572b4dd1-Persistent-Outlook-Landing-Pages
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

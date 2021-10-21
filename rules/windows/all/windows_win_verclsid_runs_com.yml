@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects when verclsid.exe is used to run COM object via GUID
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\verclsid.exe AND process.command_line.keyword:*\/C* AND process.command_line.keyword:*\/S*)
+index: winlogbeat-*
+name: d06be4b9-8045-428b-a567-740a26d9db25-Verclsid.exe-Runs-COM-Object
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

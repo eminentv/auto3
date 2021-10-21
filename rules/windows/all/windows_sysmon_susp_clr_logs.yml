@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects suspicious .NET assembly executions
+filter:
+- query:
+    query_string:
+      query: (file.path.keyword:*\\AppData\\Local\\Microsoft\\CLR* AND file.path.keyword:*\\UsageLogs\\* AND file.path.keyword:(*mshta* OR *cscript* OR *wscript* OR *regsvr32* OR *wmic*))
+index: winlogbeat-*
+name: e4b63079-6198-405c-abd7-3fe8b0ce3263-Suspcious-CLR-Logs-Creation
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

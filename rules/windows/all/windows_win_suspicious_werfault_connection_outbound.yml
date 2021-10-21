@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Adversaries can migrate cobalt strike/metasploit/C2 beacons on compromised systems to legitimate werfault.exe process to avoid detection.
+filter:
+- query:
+    query_string:
+      query: (process.executable:"werfault.exe" AND (NOT ((process.parent.executable:"svchost.exe" AND destination.ip.keyword:(104.42.151.234 OR 104.43.193.48 OR 52.255.188.83 OR 13.64.90.137 OR 168.61.161.212 OR 13.88.21.125 OR 40.88.32.150 OR 52.147.198.201 OR 52.239.207.100 OR 52.176.224.96 OR 2607\:7700\:0\:24\:0\:1\:287e\:1894 OR 10.* OR 192.168.* OR 127.*) AND destination.domain.keyword:(*.windowsupdate.com* OR *.microsoft.com*)))))
+index: winlogbeat-*
+name: e12c75f2-d09e-43f6-90e4-6a23842907af-Suspicious-Werfault.exe-Network-Connection-Outbound
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

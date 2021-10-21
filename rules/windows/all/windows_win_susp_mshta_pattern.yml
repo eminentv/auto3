@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects suspicious mshta process patterns
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:*\\mshta.exe AND (((process.parent.executable.keyword:(*\\cmd.exe OR *\\powershell.exe) OR process.command_line.keyword:(*\\AppData\\Local* OR *C\:\\Windows\\Temp* OR *C\:\\Users\\Public*)) OR (NOT (process.executable.keyword:(*C\:\\Windows\\System32* OR *C\:\\Windows\\SysWOW64*)))) OR (NOT (process.command_line.keyword:(*.htm* OR *.hta*) AND process.command_line.keyword:(*mshta.exe OR *mshta)))))
+index: winlogbeat-*
+name: e32f92d1-523e-49c3-9374-bdb13b46a3ba-Suspicious-MSHTA-Process-Patterns
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

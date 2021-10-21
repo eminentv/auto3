@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects CLR DLL being loaded by an scripting applications
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:(*\\wscript.exe OR *\\cscript.exe OR *\\mshta.exe) AND file.path.keyword:(*\\clr.dll OR *\\mscoree.dll OR *\\mscorlib.dll))
+index: winlogbeat-*
+name: 4508a70e-97ef-4300-b62b-ff27992990ea-CLR-DLL-Loaded-Via-Scripting-Applications
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

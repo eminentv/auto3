@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects Chafer activity attributed to OilRig as reported in Nyotron report in March 2018
+filter:
+- query:
+    query_string:
+      query: ((process.command_line.keyword:*\\Service.exe* AND process.command_line.keyword:(*i OR *u)) OR (process.command_line.keyword:*\\microsoft\\Taskbar\\autoit3.exe OR process.command_line.keyword:C\:\\wsc.exe*) OR (process.executable.keyword:*\\Windows\\Temp\\DB\\* AND process.executable.keyword:*.exe) OR (process.command_line.keyword:*\\nslookup.exe* AND process.command_line.keyword:*\-q\=TXT* AND process.parent.executable.keyword:*\\Autoit*))
+index: winlogbeat-*
+name: ce6e34ca-966d-41c9-8d93-5b06c8b97a06-Chafer-Activity
+priority: 1
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

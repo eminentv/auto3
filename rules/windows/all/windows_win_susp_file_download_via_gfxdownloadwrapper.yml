@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects when GfxDownloadWrapper.exe downloads file from non standard URL
+filter:
+- query:
+    query_string:
+      query: ((process.executable.keyword:*\\GfxDownloadWrapper.exe AND (NOT (process.command_line.keyword:*gameplayapi.intel.com*))) AND (NOT (process.parent.executable.keyword:*\\GfxDownloadWrapper.exe)))
+index: winlogbeat-*
+name: eee00933-a761-4cd0-be70-c42fe91731e7-GfxDownloadWrapper.exe-Downloads-File-from-Suspicious-URL
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

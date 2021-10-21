@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects WMI SquiblyTwo Attack with possible renamed WMI by looking for imphash
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:*http* AND ((process.executable.keyword:*\\wmic.exe AND process.command_line.keyword:*wmic* AND process.command_line.keyword:*format*) OR (process.pe.imphash:("1B1A3F43BF37B5BFE60751F2EE2F326E" OR "37777A96245A3C74EB217308F3546F4C" OR "9D87C9D67CE724033C0B40CC4CA1B206") AND process.command_line.keyword:*format\:*)))
+index: winlogbeat-*
+name: 8d63dadf-b91b-4187-87b6-34a1114577ea-SquiblyTwo
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

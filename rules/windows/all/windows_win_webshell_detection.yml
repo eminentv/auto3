@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects certain command line parameters often used during reconnaissance activity via web shells
+filter:
+- query:
+    query_string:
+      query: ((process.parent.executable.keyword:(*\\w3wp.exe OR *\\php\-cgi.exe OR *\\nginx.exe OR *\\httpd.exe) OR process.parent.executable.keyword:(*\\apache* OR *\\tomcat*)) AND (((process.executable.keyword:(*\\net.exe OR *\\net1.exe) AND process.command_line.keyword:(*\ user\ * OR *\ use\ * OR *\ group\ *)) OR (process.executable.keyword:*\\ping.exe AND process.command_line.keyword:*\ \-n\ *) OR process.command_line.keyword:(*&cd&echo* OR *cd\ \/d\ *)) OR (process.executable.keyword:*\\wmic.exe AND process.command_line.keyword:*\ \/node\:*) OR process.executable.keyword:(*\\whoami.exe OR *\\systeminfo.exe OR *\\quser.exe OR *\\ipconfig.exe OR *\\pathping.exe OR *\\tracert.exe OR *\\netstat.exe OR *\\schtasks.exe OR *\\vssadmin.exe OR *\\wevtutil.exe OR *\\tasklist.exe) OR process.command_line.keyword:(*\ Test\-NetConnection\ * OR *dir\ \\*)))
+index: winlogbeat-*
+name: bed2a484-9348-4143-8a8a-b801c979301c-Webshell-Detection-With-Command-Line-Keywords
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

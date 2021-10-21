@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Injects arbitrary DLL into running process specified by process ID. Requires Windows 10.
+filter:
+- query:
+    query_string:
+      query: (process.command_line.keyword:*\ \/INJECTRUNNING* AND process.command_line.keyword:*.dll* AND process.pe.original_file_name.keyword:*mavinject*)
+index: winlogbeat-*
+name: 4f73421b-5a0b-4bbf-a892-5a7fb99bea66-Mavinject-Inject-DLL-Into-Running-Process
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

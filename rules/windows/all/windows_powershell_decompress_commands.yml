@@ -1,0 +1,15 @@
+alert:
+- debug
+description: A General detection for specific decompress commands in PowerShell logs. This could be an adversary decompressing files.
+filter:
+- query:
+    query_string:
+      query: winlog.event_data.Payload.keyword:*Expand\-Archive*
+index: winlogbeat-*
+name: 1ddc1472-8e52-4f7d-9f11-eab14fc171f5-PowerShell-Decompress-Commands
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

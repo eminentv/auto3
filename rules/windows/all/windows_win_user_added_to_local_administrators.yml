@@ -1,0 +1,15 @@
+alert:
+- debug
+description: This rule triggers on user accounts that are added to the local Administrators group, which could be legitimate activity or a sign of privilege escalation activity
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND (event.code:"4732" AND winlog.channel:"Security" AND (winlog.event_data.TargetUserName.keyword:Administr* OR winlog.event_data.TargetSid:"S\-1\-5\-32\-544")) AND (NOT (user.name.keyword:*$)))
+index: winlogbeat-*
+name: c265cf08-3f99-46c1-8d59-328247057d57-User-Added-to-Local-Administrators
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config

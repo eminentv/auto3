@@ -1,0 +1,15 @@
+alert:
+- debug
+description: Detects programs with network connections running in suspicious files system locations
+filter:
+- query:
+    query_string:
+      query: (process.executable.keyword:(*\\Users\\All\ Users\\* OR *\\Users\\Default\\* OR *\\Users\\Public\\* OR *\\Users\\Contacts\\* OR *\\Users\\Searches\\* OR *\\config\\systemprofile\\* OR *\\Windows\\Fonts\\* OR *\\Windows\\IME\\* OR *\\Windows\\addins\\*) OR process.executable.keyword:*\\$Recycle.bin OR process.executable.keyword:C\:\\Perflogs\\*)
+index: winlogbeat-*
+name: 7b434893-c57d-4f41-908d-6a17bf1ae98f-Suspicious-Program-Location-with-Network-Connections
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+import: /rules/Windows-All.config
